@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrea Cucciniello</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#f8f6f1;
+  --surface:#f0ede6;
+  --border:#ddd9d0;
+  --border-mid:#ccc8be;
+  --text:#1a1a18;
+  --muted:#7a7670;
+  --faint:#c0bdb5;
+  --accent:#5a8a10;
+  --accent-dim:#4a7208;
+  --accent-light:rgba(90,138,16,0.08);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'IBM Plex Sans',sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1000;opacity:0.35;
+}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 48px;
+  border-bottom:1px solid var(--border);
+  background:rgba(248,246,241,0.92);
+  backdrop-filter:blur(16px);
+}
+
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:17px;letter-spacing:0.01em;color:var(--text);
+  font-style:italic;
+}
+
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+  font-family:'IBM Plex Mono',monospace;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--text)}
+
+.nav-cta{
+  color:var(--accent);
+  border:1px solid var(--accent);
+  padding:7px 18px;border-radius:2px;
+  text-decoration:none;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+  transition:all 0.2s;
+}
+.nav-cta:hover{
+  background:var(--accent);
+  color:#fff;
+}
+
+/* SECTIONS */
+section{
+  max-width:760px;
+  margin:0 auto;
+  padding:100px 48px;
+}
+
+section:first-of-type{
+  padding-top:100px;
+  padding-bottom:80px;
+}
+
+.divider{
+  width:40px;height:1px;
+  background:var(--accent);
+  margin-bottom:32px;
+}
+
+.section-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:24px;
+}
+
+/* HERO */
+.hero-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:28px;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px, 5vw, 52px);
+  line-height:1.15;
+  letter-spacing:-0.02em;
+  font-weight:400;
+  margin-bottom:28px;
+  color:var(--text);
+}
+
+h1 em{
+  font-style:italic;
+  color:var(--accent);
+}
+
+.hero-sub{
+  font-size:18px;
+  color:var(--muted);
+  line-height:1.7;
+  font-weight:300;
+  max-width:580px;
+  margin-bottom:48px;
+}
+
+.hero-actions{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent);color:#fff;
+  padding:12px 24px;border-radius:2px;
+  text-decoration:none;font-size:13px;font-weight:500;
+  letter-spacing:0.02em;transition:background 0.2s;
+}
+.btn-primary:hover{background:var(--accent-dim)}
+
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--muted);border:1px solid var(--border-mid);
+  padding:12px 24px;border-radius:2px;
+  text-decoration:none;font-size:13px;
+  font-family:'IBM Plex Mono',monospace;
+  letter-spacing:0.02em;transition:all 0.2s;
+}
+.btn-secondary:hover{border-color:var(--text);color:var(--text)}
+
+/* WHY */
+.why-section{
+  border-top:1px solid var(--border);
+}
+
+.lead-statement{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px, 3vw, 28px);
+  line-height:1.4;
+  letter-spacing:-0.01em;
+  font-weight:400;
+  color:var(--text);
+  margin-bottom:32px;
+  font-style:italic;
+}
+
+.body-text{
+  font-size:16px;
+  color:var(--muted);
+  line-height:1.8;
+  font-weight:300;
+  margin-bottom:20px;
+}
+
+.body-text strong{
+  color:var(--text);
+  font-weight:500;
+}
+
+/* PATTERN */
+.pattern-section{
+  border-top:1px solid var(--border);
+}
+
+.pattern-steps{
+  display:flex;flex-direction:column;
+  gap:0;margin:40px 0;
+  border:1px solid var(--border);
+}
+
+.pattern-step{
+  display:flex;align-items:baseline;gap:24px;
+  padding:20px 28px;
+  border-bottom:1px solid var(--border);
+  transition:background 0.15s;
+}
+
+.pattern-step:last-child{border-bottom:none}
+.pattern-step:hover{background:var(--surface)}
+
+.step-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.1em;
+  color:var(--accent);min-width:24px;
+}
+
+.step-text{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-weight:400;
+  letter-spacing:-0.01em;color:var(--text);
+  font-style:italic;
+}
+
+.card-block{margin-bottom:16px}
+.card-block:last-of-type{margin-bottom:0}
+.card-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);display:block;margin-bottom:6px;
+}
+.card-block p{
+  font-size:14px;color:var(--muted);
+  line-height:1.75;font-weight:300;margin:0;
+}
+
+.selected-exp{
+  margin-top:40px;
+  padding:24px 28px;
+  border:1px solid var(--border);
+}
+.selected-exp-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;display:block;
+}
+.selected-exp-list{
+  font-size:13px;color:var(--muted);font-weight:300;
+  line-height:1.8;
+}
+.selected-exp-list span{
+  color:var(--text);
+}
+
+/* EVIDENCE */
+.evidence-section{
+  border-top:1px solid var(--border);
+}
+
+.evidence-grid{
+  display:flex;flex-direction:column;gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  margin-top:40px;
+}
+
+.evidence-card{
+  background:var(--bg);
+  padding:36px 40px;
+  position:relative;
+}
+
+.evidence-card::before{
+  content:'';
+  position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--accent);opacity:0;
+  transition:opacity 0.2s;
+}
+
+.evidence-card:hover::before{opacity:1}
+.evidence-card:hover{background:var(--surface)}
+
+.evidence-index{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.1em;color:var(--accent);
+  margin-bottom:16px;
+}
+
+.evidence-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:19px;font-weight:400;
+  letter-spacing:-0.01em;
+  margin-bottom:12px;
+}
+
+.evidence-card p{
+  font-size:14px;color:var(--muted);
+  line-height:1.8;font-weight:300;
+}
+
+.evidence-tags{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-top:20px;
+}
+
+.etag{
+  font-size:10px;padding:4px 10px;
+  border:1px solid var(--border-mid);border-radius:2px;
+  color:var(--faint);font-family:'IBM Plex Mono',monospace;
+  letter-spacing:0.04em;
+}
+
+/* BACKGROUND */
+.background-section{
+  border-top:1px solid var(--border);
+}
+
+.background-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:48px;margin-top:40px;
+}
+
+.bg-item h4{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:12px;
+}
+
+.bg-item p{
+  font-size:14px;color:var(--muted);line-height:1.75;font-weight:300;
+}
+
+.bg-item a{
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid rgba(90,138,16,0.3);
+  transition:border-color 0.2s;
+}
+.bg-item a:hover{border-color:var(--accent)}
+
+/* CONTACT */
+.contact-section{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+
+.contact-line{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(24px,3vw,32px);
+  line-height:1.3;letter-spacing:-0.01em;
+  font-weight:400;font-style:italic;
+  color:var(--text);margin-bottom:40px;
+}
+
+.contact-options{
+  display:flex;flex-direction:column;gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+}
+
+.contact-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--bg);padding:20px 28px;
+  text-decoration:none;color:var(--text);
+  transition:background 0.15s;
+  gap:16px;
+}
+
+.contact-row:hover{background:var(--surface)}
+
+.contact-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--muted);min-width:100px;
+}
+
+.contact-value{
+  font-size:14px;color:var(--text);flex:1;
+}
+
+.contact-arrow{
+  color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:14px;
+}
+
+.contact-actions{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+
+/* FOOTER */
+footer{
+  max-width:760px;margin:0 auto;
+  padding:32px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+
+.footer-name{
+  font-family:'Playfair Display',serif;
+  font-size:14px;font-style:italic;color:var(--muted);
+}
+
+.footer-note{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:0.08em;color:var(--faint);
+  text-transform:uppercase;
+}
+
+/* REVEAL */
+.reveal{
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  nav{padding:16px 24px}
+  .nav-links .hide-mobile{display:none}
+  section{padding:80px 24px}
+  section:first-of-type{padding-top:140px}
+  .background-grid{grid-template-columns:1fr}
+  .pattern-chain{gap:4px}
+  footer{padding:24px}
+}
+</style>
+</head>
+<body>
+
+
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-label reveal">Founding operator · Early-stage · Technical teams</div>
+  <div class="hero-label reveal" style="margin-top:-20px;margin-bottom:28px;">For SaaS startups &amp; technical services</div>
+  <h1 class="reveal">Helping founders make<br>the <em>first big decisions</em><br>with fewer expensive mistakes.</h1>
+  <p class="hero-sub reveal">I come in when there is no playbook yet, helping teams make important decisions with better information and build the first repeatable systems.</p>
+  <div class="hero-actions reveal">
+    <a href="https://calendly.com/andreacucciniello-intro/30min" target="_blank" class="btn-primary">Get in touch</a>
+    <a href="https://acnotebook.substack.com" target="_blank" class="btn-secondary">Read my writing ↗</a>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="why-section">
+  <div class="section-label reveal">Why this matters</div>
+  <p class="lead-statement reveal">Early teams should not have to make critical decisions blindly.</p>
+  <p class="body-text reveal">Most early teams do not fail because people are not working hard. They fail because <strong>founders need to make important decisions all the time, often without experienced support nearby</strong>: hiring too early, building the wrong GTM motion, or trying to scale before repeatable systems exist.</p>
+  <p class="body-text reveal">The cost of getting these decisions wrong is rarely just money. It is time, energy, and often the confidence of the team.</p>
+  <p class="body-text reveal">The challenge is rarely a lack of effort. It is making important decisions while information is incomplete and time is limited. My role is to reduce that uncertainty and leave behind systems that continue working after I step away.</p>
+</section>
+
+<!-- PATTERN -->
+<section id="pattern" class="pattern-section">
+  <div class="section-label reveal">The pattern</div>
+  <p class="body-text reveal">Across startups, open source communities, operations and partnerships, the common thread has been the same: entering situations with high uncertainty and leaving behind something that continues working after I step away.</p>
+
+  <div class="pattern-steps reveal">
+    <div class="pattern-step">
+      <span class="step-num">01</span>
+      <span class="step-text">Map the situation</span>
+    </div>
+    <div class="pattern-step">
+      <span class="step-num">02</span>
+      <span class="step-text">Reduce uncertainty</span>
+    </div>
+    <div class="pattern-step">
+      <span class="step-num">03</span>
+      <span class="step-text">Build the first process</span>
+    </div>
+    <div class="pattern-step">
+      <span class="step-num">04</span>
+      <span class="step-text">Leave something that keeps working</span>
+    </div>
+  </div>
+
+  <p class="body-text reveal">I work best in the early stages, when there is no playbook yet. I typically join for a defined period, help build and stabilise the first version of the machine, then transition ownership back to the team.</p>
+  <p class="body-text reveal">This is not consulting. I take ownership of outcomes for a defined window, not just responsibility for recommendations.</p>
+</section>
+
+<!-- EVIDENCE -->
+<section id="evidence" class="evidence-section">
+  <div class="section-label reveal">What this looks like</div>
+  <p class="body-text reveal">Three situations where this pattern played out.</p>
+
+  <div class="evidence-grid reveal">
+    <div class="evidence-card">
+      <div class="evidence-index">01</div>
+      <h3>Turning technical expertise into a repeatable commercial engine</h3>
+      <div class="card-block"><span class="card-label">Problem</span><p>A growing technical services company had expertise and customers, but limited visibility into opportunities and no structured commercial process.</p></div>
+      <div class="card-block"><span class="card-label">What I did</span><p>Built the first commercial operating system by creating visibility across the business, introducing the right tools and processes, and supporting the company through an M&amp;A process.</p></div>
+      <div class="card-block"><span class="card-label">Outcome</span><p>A structured commercial engine and operational clarity at a critical moment.</p></div>
+      <div class="evidence-tags">
+        <span class="etag">Commercial management</span>
+        <span class="etag">Operations</span>
+        <span class="etag">CRM implementation</span>
+        <span class="etag">M&amp;A support</span>
+      </div>
+    </div>
+
+    <div class="evidence-card">
+      <div class="evidence-index">02</div>
+      <h3>Making an unclear business understandable under time pressure</h3>
+      <div class="card-block"><span class="card-label">Problem</span><p>An acquisition in Europe had never been properly absorbed into the parent organisation. Processes were unclear, data was missing, and the business was largely a black box.</p></div>
+      <div class="card-block"><span class="card-label">What I did</span><p>Mapped what existed, identified the gaps, and built enough structure for new ownership to understand what they had bought — during a significant ownership transition.</p></div>
+      <div class="card-block"><span class="card-label">Outcome</span><p>Clarity where there was none, under time pressure and investor scrutiny.</p></div>
+      <div class="evidence-tags">
+        <span class="etag">Post-acquisition integration</span>
+        <span class="etag">Operations</span>
+        <span class="etag">Private equity context</span>
+        <span class="etag">Uncertainty reduction</span>
+      </div>
+    </div>
+
+    <div class="evidence-card">
+      <div class="evidence-index">03</div>
+      <h3>Rebuilding the foundations before scaling again</h3>
+      <div class="card-block"><span class="card-label">Problem</span><p>A SaaS company had been through a growth cycle, shrunk back to a small core team, and needed to rebuild before scaling again.</p></div>
+      <div class="card-block"><span class="card-label">What I did</span><p>Rebuilt the commercial and operational foundation. Supported the team as it grew from 4 to 15 people.</p></div>
+      <div class="card-block"><span class="card-label">Outcome</span><p>A system in place that the team could run without me after I stepped away.</p></div>
+      <div class="evidence-tags">
+        <span class="etag">Scaling</span>
+        <span class="etag">Operational design</span>
+        <span class="etag">Commercial process</span>
+        <span class="etag">Team building</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach" class="background-section">
+  <div class="section-label reveal">Approach</div>
+  <p class="body-text reveal">I take ownership of outcomes for a defined period — typically 6 to 12 months — then transition cleanly. Not a permanent hire. Not a consultant who delivers recommendations. Something closer to a founding operator for a defined period.</p>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <p class="contact-line reveal">Facing an important<br>early decision?</p>
+
+  <div class="contact-actions reveal">
+    <a href="https://calendly.com/andreacucciniello-intro/30min" target="_blank" class="btn-primary">Let's have a chat</a>
+    <a href="https://www.linkedin.com/in/andreacucciniello/" target="_blank" class="btn-secondary">LinkedIn ↗</a>
+    <a href="https://acnotebook.substack.com" target="_blank" class="btn-secondary">Writing ↗</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-name">AC — providing service globally — 2026</span>
+</footer>
+
+<script>
+
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
